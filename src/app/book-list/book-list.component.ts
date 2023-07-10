@@ -12,7 +12,6 @@
 // imports
 import { Component, OnInit } from '@angular/core';
 import { IBook } from '../book.interface';
-import { Observable } from 'rxjs';
 import { BooksService } from '../books.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BookDetailsDialogComponent } from '../book-details-dialog/book-details-dialog.component';
@@ -27,19 +26,40 @@ import { BookDetailsDialogComponent } from '../book-details-dialog/book-details-
 // exports
 export class BookListComponent implements OnInit {
 
-  books: Observable<IBook[]>;
-  header: Array<string> = ['isbn', 'title', 'numOfPages', 'authors']
+  books: Array<IBook> = [];
   book: IBook;
 
   constructor(private booksService: BooksService, private dialog: MatDialog) {
-    this.books = this.booksService.getBooks();
-   }
+    this.booksService.getBooks().subscribe(res => {
+      console.log(res);
+      // iterates over the response data object using a for/in loops and checks if the res.hasOwnProperty(key) is true
+      for (let key in res) {
+        if (res.hasOwnProperty(key)) {
+          let authors = [];
+          if (res[key].details.authors) {
+            authors = res[key].details.authors.map(function(author) {
+              return author.name;
+            })
+          }
+
+          this.books.push({
+            isbn: res[key].details.isbn_13 ? res[key].details.isbn_13 : res[key].details.isbn_10,
+            title: res[key].details.title,
+            description: res[key].details.subtitle ? res[key].details.subtitle : 'N/A',
+            numOfPages: res[key].details.number_of_pages,
+            authors: authors
+          })
+        }
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
   // show details function that retrieves the details for one book based on isbn input from the user
   showBookDetails(isbn: string) {
-    this.book = this.booksService.getBook(isbn);
+    // updated during Exercise 8.2 to use the JavaScript find function to search the books array and return the matching book object
+    this.book = this.books.find(book => book.isbn === isbn);
     // variable for our dialog for when the isbn is clicked
     const dialogRef = this.dialog.open(BookDetailsDialogComponent, {
       data: { book: this.book},
