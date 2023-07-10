@@ -1,0 +1,22 @@
+/*
+======================================
+; Title: app.component.css
+; Author: Chris Gorham
+; Date: 26 June 2023
+; Description: This code supports functionality for the In-N-Out Books Project
+; Sources Used:
+; Exercise 6.2 Instructions
+;=====================================
+*/
+
+.logo {
+  margin-top: 5px;
+}
+
+.main-container {
+  padding-top: 25px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+

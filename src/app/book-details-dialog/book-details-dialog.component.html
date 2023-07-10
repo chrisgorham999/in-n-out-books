@@ -1,0 +1,27 @@
+<!--
+======================================
+; Title: book-details-dialog.component.html
+; Author: Chris Gorham
+; Date: 26 June 2023
+; Description: This code is for the html portions of the book-list component for the In-N-Out Books project
+; Sources Used:
+; Exercise 6.2 Instructions
+=====================================
+-->
+
+<mat-card>
+  <mat-card-title class="header-blue">
+    {{ book.title }}
+  </mat-card-title>
+  <br><br>
+  <mat-card-content>
+    <div fxLayout="column">
+      <p>ISBN: {{ book.isbn }} </p>
+      <p>Description:<br> {{ book.description }}</p>
+      <p>Authors:<br> {{book.authors.join(', ')}}</p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" matDialogClose="confirm">Ok</button>
+  </mat-card-actions>
+</mat-card>

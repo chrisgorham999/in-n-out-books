@@ -1,0 +1,26 @@
+/*
+======================================
+; Title: book-list.component.css
+; Author: Chris Gorham
+; Date: 26 June 2023
+; Description: This code supports functionality for the In-N-Out Books Project
+; Sources Used:
+; Exercise 6.2 Instructions
+;=====================================
+*/
+
+.a-link {
+  text-decoration: none;
+  /* changed this to royal blue to be a little easier on the eyes */
+  color:  #2196F3;
+}
+
+.a-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* added this in to make the table look a little neater */
+.header-center {
+  text-align: center;
+}

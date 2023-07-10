@@ -1,0 +1,24 @@
+<!--
+======================================
+; Title: wishlist-create.component.html
+; Author: Chris Gorham
+; Date: 26 June 2023
+; Description: This code is for the html portions of the app component for the In-N-Out Books project
+; Sources Used:
+; Exercise 6.2 Instructions
+=====================================
+-->
+
+<form fxLayout="column" class="wishlist-create-form">
+  <mat-form-field fxFlex appearance="fill">
+    <mat-label>Title</mat-label>
+    <input type="text" name="title" matInput [(ngModel)]="item.title">
+  </mat-form-field>
+
+  <mat-form-field fxFlex appearance="fill">
+    <mat-label>Authors</mat-label>
+    <input type="text" name="authors" matInput [(ngModel)]="item.authors">
+  </mat-form-field>
+
+  <button mat-button color="primary" (click)="addItem()">Add item</button>
+</form>
